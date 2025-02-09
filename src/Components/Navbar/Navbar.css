@@ -1,40 +1,10 @@
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: rotateX(90deg);
-    }
-    to {
-        opacity: 1;
-        transform: rotateX(0deg);
-    }
-}
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-        transform: rotateX(0deg);
-    }
-    to {
-        opacity: 0;
-        transform: rotateX(90deg);
-    }
-}
-
-.submenu-container {
-    position: absolute;
-    left: -66.8vw;
-    width: 100vw;
-    padding: 80px 50px;
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    background: white;
-}
-
-.fade-in {
-    animation: fadeIn 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-}
-
-.fade-out {
-    animation: fadeOut 0.35s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  from {
+    opacity: 0;
+    transform: rotateX(90deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
 }
