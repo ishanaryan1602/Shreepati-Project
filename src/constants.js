@@ -9,9 +9,6 @@ export const navBarContent = [
         label: "Kingston",
         imgSrc: "/kingston_nav_img.jpg",
         path: "/kingston",
-        smallTexts:[
-            "Solid State Drive","USB Flash Drive","Memory Cards"
-        ]
       },
       {
         label: "Transcend",
