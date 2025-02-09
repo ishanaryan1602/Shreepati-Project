@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { navBarContent } from "../../constants";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
@@ -23,9 +23,8 @@ const Navbar = () => {
           <div
             className="relative cursor-pointer"
             key={index}
-            onClick={() =>
-              setShowSubItem(showSubItem === item.navItem ? null : item.navItem)
-            }
+            onMouseEnter={() => setShowSubItem(item.navItem)}
+            onMouseLeave={() => setShowSubItem(null)}
           >
             {/* Main Item */}
             <NavLink
