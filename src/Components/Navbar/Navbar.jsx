@@ -6,7 +6,14 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 
 const Navbar = () => {
-  const [showSubItem, setShowSubItem] = useState("Products");
+  const [showSubItem, setShowSubItem] = useState(null);
+  const [subMenuOpen, setSubMenuOpen] = useState(false);
+
+  const [animate, setAnimate] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setAnimate(false), 500); // Remove after 500ms (adjust as needed)
+  }, []);
 
   //   useEffect(() => {
   //     console.log(showSubItem);
@@ -30,9 +37,15 @@ const Navbar = () => {
             <div
               className="nav_item relative cursor-pointer"
               key={index}
-              onClick={() =>
-                setShowSubItem(showSubItem === null ? item.navItem : null)
-              }
+              onClick={() => {
+                if (showSubItem === item.navItem) {
+                  setSubMenuOpen(false); // Trigger fade-out animation
+                  setTimeout(() => setShowSubItem(null), 500); // Delay unmounting
+                } else {
+                  setShowSubItem(item.navItem);
+                  setSubMenuOpen(true);
+                }
+              }}
             >
               {/* Main Item */}
               <NavLink
@@ -42,9 +55,11 @@ const Navbar = () => {
                 {item.navItem}
                 {item.subItems &&
                   (showSubItem === item.navItem ? (
-                    <IoIosArrowUp />
+                    <IoIosArrowUp className={`${animate ? "animate-pulse" : ""}`}
+                    />
                   ) : (
-                    <IoIosArrowDown />
+                    <IoIosArrowDown className={`${animate ? "animate-pulse" : ""}`}
+                    />
                   ))}
               </NavLink>
             </div>
@@ -55,7 +70,9 @@ const Navbar = () => {
         <div
           className="bg-white flex justify-center gap-[50px] items-center absolute left-0 right-0 p-[40px] py-[20px] mx-auto w-full"
           style={{
-            animation: "fadeIn 0.3s ease-in-out",
+            animation: subMenuOpen
+              ? "fadeIn 500ms ease-in-out"
+              : "fadeOut 500ms ease-in-out",
             transformOrigin: "center top",
           }}
         >
@@ -77,7 +94,7 @@ const Navbar = () => {
                         {subItem.label}
                       </h1>
 
-                      <div className="absolute w-full h-[full] top-[30px] right-0 left-0 bottom-0 z-[1] ">
+                      <div className="absolute w-full h-[full] top-[30px] object-top right-0 left-0 bottom-0 z-[1] ">
                         <img
                           src={subItem.imgSrc}
                           className="w-[200px] h-[230px] object-cover opacity-25"
